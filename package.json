@@ -1,5 +1,5 @@
 {
-  "name": "weather",
+  "name": "YAIverse_mobile",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -9,10 +9,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.4.0",
+    "@react-navigation/stack": "^6.3.2",
+    "axios": "^1.1.2",
     "expo": "~46.0.13",
+    "expo-camera": "~12.3.0",
+    "expo-checkbox": "~2.2.0",
+    "expo-image-picker": "^13.3.1",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
-    "react-native": "0.69.6"
+    "react-native": "0.69.6",
+    "react-native-snap-carousel": "^3.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
