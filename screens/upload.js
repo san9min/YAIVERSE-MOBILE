@@ -11,45 +11,20 @@ import {
   ScrollView,
 } from "react-native";
 import CheckBox from "expo-checkbox";
-import { API_URL } from "../config/constant";
-import axios from "axios";
-const id = 1;
+
 
 export default function UploadScreen(props) {
   const windowWidth = Dimensions.get("window").width;
-  const image = props.route.params.image.uri;
-  const imageData = props.route.params.image;
+  const imageUri = props.route.params.image;
   const [checkedState, setCheckedState] = useState(false);
 
-  const onSubmit = (styleId, imageData) => {
-    axios
-      .post(
-        `${API_URL}`,
-        {
-          data : imageData,
-        },
-      )
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-
-        console.error(err);
-        message.error(`실패!! ${err.message}`);
-      });
-  };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <View style={styles.title}>
-        <TouchableOpacity>
-          <Text style={styles.titleName}>Style</Text>
-        </TouchableOpacity>
-      </View>
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: image }}
+          source={{ uri: imageUri }}
           style={{
             width: windowWidth,
             height: "100%",
@@ -78,9 +53,8 @@ export default function UploadScreen(props) {
           disabled={!checkedState}
           style={styles.uploadButton}
           onPress={() => {
-            onSubmit(id, imageData);
-          }}
-        >
+            props.navigation.navigate("Loading",{style : checkedState, imageUri: imageUri});
+          }}        >
           {!checkedState && <View style={styles.uploadBlur} />}
           <Text
             style={{
@@ -99,16 +73,6 @@ export default function UploadScreen(props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "black" },
-  title: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  titleName: {
-    color: "dodgerblue",
-    fontSize: 25,
-    fontWeight: "700",
-  },
   imageContainer: {
     flex: 6,
     backgroundColor: "black",

@@ -8,6 +8,7 @@ import MainScreen from "./screens/main";
 import CameraScreen from "./screens/camera";
 import ManualScreen from "./screens/manual";
 import UploadScreen from "./screens/upload";
+import LoadingScreen from "./screens/loading";
 import BottomTabs from "./tab";
 
 const Stack = createStackNavigator();
@@ -32,10 +33,17 @@ export default function App() {
             name="Camera"
             component={CameraScreen}
             options={{
-              title: "",
-              //headerShown: false,
+              title: "YAIverse",
+              headerStyle:{
+                backgroundColor : "black", 
+              },
+              headerShadowVisible: false,
               headerTintColor: "white",
-              headerTransparent: true,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                color : "dodgerblue",
+                fontSize : 28,
+              },
               headerBackTitleVisible: false,
             }}
           />
@@ -43,9 +51,35 @@ export default function App() {
             name="Upload"
             component={UploadScreen}
             options={{
-              title: "",
+              title: "Style",
+              headerStyle:{
+                backgroundColor : "black", 
+              },
+              headerShadowVisible: false,
               headerTintColor: "white",
-              headerTransparent: true,
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                color : "dodgerblue",
+                fontSize : 28,
+              },
+              headerBackTitleVisible: false,
+            }}
+          />
+                   <Stack.Screen
+            name="Loading"
+            component={LoadingScreen}
+            options={{
+              title: "Avatar",
+              headerStyle:{
+                backgroundColor : "black", 
+              },
+              headerShadowVisible: false,
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontWeight: 'bold',
+                color : "dodgerblue",
+                fontSize : 28,
+              },
               headerBackTitleVisible: false,
             }}
           />

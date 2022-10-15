@@ -22,7 +22,6 @@ export default function CameraScreen(props) {
   const [isPreview, setIsPreview] = useState(false);
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
-  const [imageData, setImageData] = useState(null);
   //갤러리
   const [image, setImage] = useState(null);
   const windowWidth = Dimensions.get("window").width;
@@ -40,7 +39,6 @@ export default function CameraScreen(props) {
         await cameraRef.current.pausePreview();
         setIsPreview(true);
         setImage(source);
-        setImageData(data);
       }
     }
   };
@@ -76,10 +74,10 @@ export default function CameraScreen(props) {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       quality: 1,
     });
-    console.log(result.data);
+    console.log(result.uri);
     if (!result.cancelled) {
       setImage(result.uri);
-      setImageData(result);
+
     }
   };
 
@@ -99,11 +97,6 @@ export default function CameraScreen(props) {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
-      <View style={styles.title}>
-        <TouchableOpacity>
-          <Text style={styles.titleName}>YAIverse</Text>
-        </TouchableOpacity>
-      </View>
       {image && (
         <View style={styles.preview}>
           <View style={styles.imageContainer}>
@@ -127,7 +120,7 @@ export default function CameraScreen(props) {
             <TouchableOpacity
               style={styles.continueButton}
               onPress={() => {
-                props.navigation.navigate("Upload", { image: imageData });
+                props.navigation.navigate("Upload", { image: image });
               }}
             >
               <Text style={styles.continueButtontext}>Continue</Text>
@@ -178,11 +171,7 @@ export default function CameraScreen(props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "black" },
-  title: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  
   camera: {
     flex: 10,
   },
