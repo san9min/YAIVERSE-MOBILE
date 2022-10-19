@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   bannerImage: {
     width: "100%",
-    height: 200,
+    height : 200,
   },
   bannertext: {
     color: "white",

@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TeamScreen from "./screens/team";
 import MainScreen from "./screens/main";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Ionicons, Foundation } from "@expo/vector-icons";
+import { Ionicons, Entypo } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,17 +22,14 @@ export default function BottomTabs() {
         name="Home"
         component={MainScreen}
         options={{
-          tabBarLabel: (props) => (
-            <Text style={{ color: "grey", fontSize: 12 }}>Home</Text>
+          tabBarLabel: ({focused, color, size}) => (
+            <Text style={{ color: focused? "gold" : "grey", fontSize: 12 }}>Home</Text>
           ),
           headerShown: false,
           tabBarIcon: ({ size, focused, color }) => {
             return (
-              <Ionicons
-                name={focused ? "home" : "home-outline"}
-                size={24}
-                color="grey"
-              />
+              <Entypo name="home" size={24} color={focused? "gold" : "grey"} />
+              
             );
           },
         }}
@@ -41,16 +38,16 @@ export default function BottomTabs() {
         name="Team"
         component={TeamScreen}
         options={{
-          tabBarLabel: (props) => (
-            <Text style={{ color: "grey", fontSize: 12 }}>Team</Text>
+          tabBarLabel: ({ size, focused, color}) => (
+            <Text style={{ color: focused? "gold" : "grey", fontSize: 12 }}>Team</Text>
           ),
           headerShown: false,
           tabBarIcon: ({ size, focused, color }) => {
             return (
               <Ionicons
-                name={focused ? "people" : "people-outline"}
+                name= "people" 
                 size={24}
-                color="grey"
+                color={focused? "gold" : "grey"}
               />
             );
           },

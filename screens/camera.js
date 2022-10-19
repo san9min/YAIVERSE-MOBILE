@@ -171,7 +171,6 @@ export default function CameraScreen(props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "black" },
-  
   camera: {
     flex: 10,
   },
