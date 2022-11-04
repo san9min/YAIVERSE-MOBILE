@@ -12,7 +12,7 @@ export default function ManualScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "black",
+    backgroundColor: "rgb(18,18,18)",
     flex: 1,
   },
 });

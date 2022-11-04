@@ -20,7 +20,7 @@ export default function MainScreen(props) {
       <View style={styles.banner}>
         <Image
           style={styles.bannerImage}
-          source={require("../assets/banner.jpg")}
+          source={require("../assets/banner.png")}
         />
         <Text style={styles.bannertext}>Welcome to YAIverse</Text>
       </View>
@@ -32,7 +32,7 @@ export default function MainScreen(props) {
           style={styles.navigation}
         >
           <Ionicons name="document-text" size={30} color="white" />
-          <Text style={styles.navigationtext}>Manual</Text>
+          <Text style={styles.navigationtext}>Guide</Text>
 
           <AntDesign
             name="right"
@@ -41,6 +41,7 @@ export default function MainScreen(props) {
             style={styles.navigationgoicon}
           />
         </TouchableOpacity>
+
         <TouchableOpacity
           onPress={() => {
             props.navigation.navigate("Camera");
@@ -64,7 +65,7 @@ export default function MainScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "rgb(18,18,18)",
   },
   banner: {
     justifyContent: "center",
@@ -73,10 +74,11 @@ const styles = StyleSheet.create({
   bannerImage: {
     width: "100%",
     height: 200,
+    resizeMode: "cover",
   },
   bannertext: {
     color: "white",
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: "600",
     position: "absolute",
     bottom: 0,

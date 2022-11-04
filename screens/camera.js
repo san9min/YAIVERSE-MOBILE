@@ -77,7 +77,6 @@ export default function CameraScreen(props) {
     console.log(result.uri);
     if (!result.cancelled) {
       setImage(result.uri);
-
     }
   };
 
@@ -120,7 +119,7 @@ export default function CameraScreen(props) {
             <TouchableOpacity
               style={styles.continueButton}
               onPress={() => {
-                props.navigation.navigate("Upload", { image: image });
+                props.navigation.navigate("StyleChoose", { image: image });
               }}
             >
               <Text style={styles.continueButtontext}>Continue</Text>
@@ -170,7 +169,7 @@ export default function CameraScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "black" },
+  container: { flex: 1, backgroundColor: "rgb(24,24,24)" },
   camera: {
     flex: 10,
   },
@@ -182,13 +181,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   preview: { flex: 13 },
-  titleName: {
-    color: "dodgerblue",
-    fontSize: 25,
-    fontWeight: "700",
-  },
   imageContainer: {
-    flex: 9,
+    flex: 6,
     backgroundColor: "rgb(18,18,18)",
     justifyContent: "center",
     alignItems: "center",
@@ -219,7 +213,7 @@ const styles = StyleSheet.create({
   },
 
   continueButtontext: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "bold",
     color: "white",
   },
