@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import StylePreview from "../../components/stylepreview";
 import { API_URL } from "../../config/constant";
+import ImageModal from "react-native-image-modal";
 
 export default function UserScreen(props) {
   const windowWidth = Dimensions.get("window").width;
@@ -43,7 +43,9 @@ export default function UserScreen(props) {
         )}
       </View>
       <View>
-        {id != null && <Text style={{ color: "white" }}>{id} 님의 갤러리</Text>}
+        {id != null && (
+          <Text style={{ color: "white", margin: 20 }}>{id}님의 갤러리</Text>
+        )}
       </View>
       {imgkey && (
         <View>
@@ -52,15 +54,19 @@ export default function UserScreen(props) {
             <View style={styles.user_images}>
               {imgkey.map((key, index) => {
                 return (
-                  <Image
+                  <ImageModal
                     key={index}
-                    source={{ uri: `${API_URL}/file/${key}/` }}
+                    resizeMode="contain"
+                    imageBackgroundColor="#121212"
                     style={{
                       width: parseInt(windowWidth / 3),
                       height: parseInt(windowWidth / 3),
                       resizeMode: "contain",
                       borderColor: "black",
                       borderWidth: 1,
+                    }}
+                    source={{
+                      uri: `${API_URL}/file/${key}/`,
                     }}
                   />
                 );
@@ -86,11 +92,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgb(24,24,24)",
     padding: 12,
+    paddingTop: 48,
   },
+
   titletext: {
     color: "white",
     fontSize: 24,
     fontWeight: "bold",
+    color: "#546DF2",
   },
   boundary: {
     borderBottomColor: "white",

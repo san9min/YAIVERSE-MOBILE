@@ -1,31 +1,45 @@
 {
   "expo": {
-    "name": "YAIverse_mobile",
-    "slug": "YAIverse_mobile",
+    "name": "YAIVERSE",
+    "slug": "YAIVERSE",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "",
+    "icon": "./assets/splash.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logoText.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#192734"
+      "backgroundColor": "#1B192C"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.san9min.YAIVERSE"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/splash.png",
+        "backgroundColor": "#1B192C"
+      },
+      "package": "com.san9min.YAIVERSE"
     },
-    "web": {
-      "favicon": ""
-    }
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "사진을 바로 촬영해 아바타를 만들 수 있습니다."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "YAVverse가 회원님의 사진에 접근하도록 허용해주세요.",
+          "savePhotosPermission": "YAVverse가 아바타를 갤러리에 저장하도록 허용해주세요."
+        }
+      ]
+    ]
   }
 }

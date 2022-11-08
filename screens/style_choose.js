@@ -5,8 +5,6 @@ import {
   Text,
   Image,
   SafeAreaView,
-  StatusBar,
-  TouchableOpacity,
   Dimensions,
   ScrollView,
 } from "react-native";
@@ -18,7 +16,6 @@ export default function StyleChooseScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: imageUri }}
@@ -34,11 +31,12 @@ export default function StyleChooseScreen(props) {
           <Text
             style={{
               color: "white",
-              fontSize: 24,
+              fontSize: 18,
               fontWeight: "bold",
+              marginHorizontal: 12,
             }}
           >
-            Where to Go
+            Choose a Style
           </Text>
         </View>
         <ScrollView>
@@ -56,7 +54,7 @@ export default function StyleChooseScreen(props) {
               imageUri={imageUri}
             />
             <StylePreview
-              name="JINX"
+              name="SKETCH"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
@@ -67,8 +65,9 @@ export default function StyleChooseScreen(props) {
               navigation={props.navigation}
               imageUri={imageUri}
             />
+
             <StylePreview
-              name="SKETCH"
+              name="JINX"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
@@ -96,6 +95,7 @@ const styles = StyleSheet.create({
   },
   styleSelector: {
     flex: 4,
+    marginTop: 24,
   },
   styletext: {
     color: "white",
@@ -108,5 +108,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexWrap: "wrap",
+    marginTop: 12,
   },
 });

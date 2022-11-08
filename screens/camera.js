@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -51,10 +50,12 @@ export default function CameraScreen(props) {
     // Camera permissions are not granted yet
     return (
       <View style={styles.container}>
-        <Text style={{ textAlign: "center", color: "white", margin: 10 }}>
-          YAIverse needs your permission to show the camera
+        <Text
+          style={{ textAlign: "center", color: "white", margin: 10, flex: 1 }}
+        >
+          YAIverse가 카메라에 액세스하도록 허용
         </Text>
-        <Button onPress={requestPermission} title="Grant Permission" />
+        <Button onPress={requestPermission} title="액세스 허용" />
       </View>
     );
   }
@@ -95,7 +96,6 @@ export default function CameraScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="light" />
       {image && (
         <View style={styles.preview}>
           <View style={styles.imageContainer}>
@@ -188,12 +188,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   continueButton: {
-    backgroundColor: "dodgerblue",
+    backgroundColor: "#546DF2",
     color: "white",
     alignItems: "center",
     padding: 8,
-    margin: 2,
-    borderRadius: 2,
+    margin: 32,
+    borderRadius: 8,
   },
   closeButton: {
     position: "absolute",
@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
   continueButtonContainer: {
     flex: 2,
     justifyContent: "center",
+    margin: 20,
   },
 
   continueButtontext: {

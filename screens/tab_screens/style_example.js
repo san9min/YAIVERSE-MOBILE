@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,18 +7,33 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import StylePreview from "../../components/stylepreview";
 
 export default function ExampleScreen(props) {
   const windowWidth = Dimensions.get("window").width;
+  const [id, setId] = useState(null);
+  const getIdFunction = () => {
+    AsyncStorage.getItem("ID").then((value) => setId(value));
+  };
+  useEffect(getIdFunction, []);
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.titletext}>스타일</Text>
+        <Text style={styles.titletext}>STYLE</Text>
       </View>
       <View>
-        <Text style={{ color: "white" }}>다음과 같이 스타일을 바꿔보세요!</Text>
+        {id == null ? (
+          <Text style={{ color: "white", margin: 12 }}>
+            여러가지 스타일로 당신만의 아바타를 만들어보세요!
+          </Text>
+        ) : (
+          <Text style={{ color: "white", margin: 12 }}>
+            여러가지 스타일로 {id}님만의 아바타를 만들어보세요!
+          </Text>
+        )}
       </View>
       <View style={{ flex: 10 }}>
         <ScrollView>
@@ -77,9 +92,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgb(24,24,24)",
     padding: 12,
+    paddingTop: 48,
   },
   titletext: {
-    color: "white",
+    color: "#546DF2",
     fontSize: 24,
     fontWeight: "bold",
   },

@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -26,29 +27,30 @@ export default function DetailScreen(props) {
       result: [require("../assets/jojo/result/result_1.jpg")],
     },
     DISNEY: {
-      main: require("../assets/disney/refer.png"),
+      main: require("../assets/disney/refer.jpg"),
       input: [require("../assets/disney/input/input_1.jpg")],
       result: [require("../assets/disney/result/result_1.jpg")],
+    },
+    SKETCH: {
+      main: require("../assets/sketch/refer.png"),
+      input: [require("../assets/sketch/input/input_1.jpg")],
+      result: [require("../assets/sketch/result/result_1.jpg")],
     },
     ART: {
       main: require("../assets/art/refer.png"),
       input: [require("../assets/art/input/input_1.jpg")],
       result: [require("../assets/art/result/result_1.jpg")],
     },
-    CAITLYN: {
-      main: require("../assets/caitlyn/refer.png"),
-      input: [require("../assets/disney/input/input_1.jpg")],
-      result: [require("../assets/disney/result/result_1.jpg")],
-    },
+
     JINX: {
       main: require("../assets/jinx/refer.png"),
       input: [require("../assets/jinx/input/input_1.jpg")],
       result: [require("../assets/jinx/result/result_1.jpg")],
     },
-    SKETCH: {
-      main: require("../assets/sketch/refer.png"),
-      input: [require("../assets/sketch/input/input_1.jpg")],
-      result: [require("../assets/sketch/result/result_1.jpg")],
+    CAITLYN: {
+      main: require("../assets/caitlyn/refer.png"),
+      input: [require("../assets/disney/input/input_1.jpg")],
+      result: [require("../assets/disney/result/result_1.jpg")],
     },
   };
 
@@ -106,7 +108,7 @@ export default function DetailScreen(props) {
                 color: "white",
               }}
             >
-              Go to YAIverse
+              Generate your own Avatar
             </Text>
           </TouchableOpacity>
         </View>
@@ -119,6 +121,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "rgb(24,24,24)",
     flex: 1,
+    paddingTop: 48,
   },
 
   bannerImage: {
@@ -139,12 +142,12 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: "center",
   },
-
   uploadButton: {
-    backgroundColor: "dodgerblue",
+    backgroundColor: "#546DF2",
     color: "white",
     alignItems: "center",
     padding: 8,
-    margin: 2,
+    margin: 32,
+    borderRadius: 8,
   },
 });

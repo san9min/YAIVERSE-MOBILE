@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Image, TouchableOpacity } from "react-native";
 
 function Character(props) {
   const character_image = props.character_image;
-  const [large, setLarge] = useState(0);
 
   return (
     <TouchableOpacity>
@@ -13,7 +12,7 @@ function Character(props) {
           resizeMode: "cover",
           width: 100,
           height: 100,
-          borderRadius: "70%",
+          borderRadius: 70,
           overflow: "hidden",
           margin: 10,
         }}

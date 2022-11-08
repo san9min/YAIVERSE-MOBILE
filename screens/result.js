@@ -3,26 +3,34 @@ import {
   View,
   StyleSheet,
   Text,
-  ScrollView,
+  Modal,
+  Pressable,
+  SafeAreaView,
   Image,
   Dimensions,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
-import { FontAwesome, Entypo, FontAwesome5 } from "@expo/vector-icons";
+import { Fontisto, Entypo, Foundation, Octicons } from "@expo/vector-icons";
 import { API_URL } from "../config/constant";
+import { LinearGradient } from "expo-linear-gradient";
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
-import AnimatedSplash from "react-native-animated-splash-screen";
+//import AnimatedSplash from "react-native-animated-splash-screen";
 
 export default function ResultScreen(props) {
+  const height = Dimensions.get("window").height;
   const imageUri = props.route.params.imageUri;
   const style = props.route.params.style;
   const id = props.route.params.id;
   const [resultImage, setresultImage] = useState(null);
   const [ok, setOk] = useState(false);
+
+  //reTry
   const [request, setRequest] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
   const windowWidth = Dimensions.get("window").width;
   const fileUri = FileSystem.documentDirectory + "myFile.png";
   const getPermissions = async () => {
@@ -39,12 +47,16 @@ export default function ResultScreen(props) {
   };
 
   useEffect(() => {
+    let startTime = new Date().getTime();
+    console.log(startTime);
+    setresultImage(null);
+
     const formData = new FormData();
     formData.append("style", style);
     formData.append("id", id);
     formData.append("file", {
       uri: imageUri,
-      type: "image/",
+      type: "image/png",
       name: "originalImage.png",
     });
     axios
@@ -55,7 +67,9 @@ export default function ResultScreen(props) {
       })
       .then((result) => {
         setresultImage(result.data);
-        setIsLoaded(true);
+        let endTime = new Date().getTime();
+        console.log(endTime);
+        console.log("걸린 시간 : ", endTime - startTime);
       })
       .catch((err) => {
         console.error(err);
@@ -72,26 +86,30 @@ export default function ResultScreen(props) {
 
   return (
     <View style={styles.container}>
-      <AnimatedSplash
-        translucent={true}
-        isLoaded={isLoaded}
-        logoImage={require("../assets/loading2.png")}
-        backgroundColor={"#192734"}
-        logoHeight={150}
-        logoWidth={150}
-      >
+      <SafeAreaView>
         <View>
           <View style={styles.title}>
-            <Text style={styles.titletext}>결과물</Text>
+            <Text style={styles.titletext}>{style} AVATAR</Text>
           </View>
+          {!resultImage && (
+            <View
+              style={{
+                height: height / 1.5,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ActivityIndicator size="large" color="#546DF2" />
+            </View>
+          )}
+
           {resultImage && (
             <View>
               <View
                 style={{
                   width: windowWidth,
                   height: windowWidth,
-                  borderWidth: 2,
-                  borderColor: "black",
+                  borderColor: "grey",
                 }}
               >
                 <Image
@@ -103,15 +121,82 @@ export default function ResultScreen(props) {
                   }}
                 />
               </View>
-              <View style={styles.buttonContainer}>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    width: "100%",
-                    alignItems: "center",
-                  }}
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <View style={styles.smallbutton}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setRequest(request + 1);
+                    }}
+                  >
+                    <Fontisto name="redo" size={24} color="#A154F2" />
+                  </TouchableOpacity>
+                </View>
+                <LinearGradient
+                  colors={["#546DF2", "#A154F2"]}
+                  style={styles.bigbutton}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
                 >
+                  <TouchableOpacity
+                    onPress={async () => {
+                      console.log("donwloading...1");
+                      getPermissions();
+                      const downloadedFile = await FileSystem.downloadAsync(
+                        `${API_URL}/file/${resultImage}/`,
+                        fileUri
+                      );
+                      console.log("donwloading...2");
+                      const asset = await MediaLibrary.createAssetAsync(
+                        downloadedFile["uri"]
+                      );
+                      console.log("donwloading...3");
+                      const album = await MediaLibrary.createAlbumAsync(
+                        "DownLoads",
+                        asset
+                      );
+                      console.log("donwloading...4");
+                      await MediaLibrary.addAssetsToAlbumAsync(
+                        asset,
+                        album,
+                        false
+                      );
+                      setModalVisible(true);
+                    }}
+                  >
+                    <Octicons name="download" size={36} color="white" />
+                  </TouchableOpacity>
+                  <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    onRequestClose={() => {
+                      Alert.alert("Modal has been closed.");
+                      setModalVisible(!modalVisible);
+                    }}
+                  >
+                    <View style={styles.centeredView}>
+                      <View style={styles.modalView}>
+                        <Text style={styles.modalText}>
+                          저장이 완료되었습니다
+                        </Text>
+                        <Pressable
+                          style={[styles.button, styles.buttonClose]}
+                          onPress={() => setModalVisible(!modalVisible)}
+                        >
+                          <Text style={styles.textStyle}>확인</Text>
+                        </Pressable>
+                      </View>
+                    </View>
+                  </Modal>
+                </LinearGradient>
+                <View style={styles.smallbutton}>
                   <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
@@ -124,43 +209,14 @@ export default function ResultScreen(props) {
                       });
                     }}
                   >
-                    <Entypo name="home" size={32} color="grey" />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={async () => {
-                      getPermissions();
-                      const downloadedFile = await FileSystem.downloadAsync(
-                        `${API_URL}/file/${resultImage}/`,
-                        fileUri
-                      );
-                      const asset = await MediaLibrary.createAssetAsync(
-                        downloadedFile["uri"]
-                      );
-                      const album = await MediaLibrary.createAlbumAsync(
-                        "DownLoads",
-                        asset
-                      );
-                      MediaLibrary.addAssetsToAlbumAsync(asset, album, false);
-                      alert("야호", "다운성공");
-                    }}
-                  >
-                    <FontAwesome name="download" size={32} color="grey" />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                      setRequest(!request);
-                    }}
-                  >
-                    <FontAwesome5 name="redo" size={32} color="grey" />
+                    <Foundation name="home" size={24} color="#A154F2" />
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
           )}
         </View>
-      </AnimatedSplash>
+      </SafeAreaView>
     </View>
   );
 }
@@ -170,17 +226,56 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgb(24,24,24)",
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
   title: {
     justifyContent: "center",
+    alignContent: "center",
     backgroundColor: "rgb(24,24,24)",
     padding: 12,
+    marginTop: 24,
   },
   titletext: {
-    color: "white",
+    color: "#A154F2",
     fontSize: 24,
     fontWeight: "bold",
   },
-  button: {
-    margin: 50,
+  smallbutton: {
+    width: 60,
+    height: 60,
+    borderRadius: 70,
+    borderWidth: 1,
+    borderColor: "#A154F2",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 12,
+  },
+  bigbutton: {
+    width: 84,
+    height: 84,
+    borderRadius: 70,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 24,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+  },
+  modalText: {
+    marginBottom: 8,
+    textAlign: "center",
   },
 });

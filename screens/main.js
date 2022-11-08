@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   LogBox,
 } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 
 LogBox.ignoreLogs(["Sending"]); //navigation에서 경고 계속있는데 해결 못해서 우선 ignore
@@ -20,44 +21,33 @@ export default function MainScreen(props) {
       <View style={styles.banner}>
         <Image
           style={styles.bannerImage}
-          source={require("../assets/banner.png")}
+          source={require("../assets/logo.png")}
         />
-        <Text style={styles.bannertext}>Welcome to YAIverse</Text>
       </View>
-      <ScrollView style={{ width: windowWidth }}>
+
+      <View style={styles.start}>
         <TouchableOpacity
           onPress={() => {
-            props.navigation.navigate("Manual");
+            props.navigation.navigate("Start");
           }}
-          style={styles.navigation}
+          style={styles.startButton}
         >
-          <Ionicons name="document-text" size={30} color="white" />
-          <Text style={styles.navigationtext}>Guide</Text>
-
-          <AntDesign
-            name="right"
-            size={24}
-            color="white"
-            style={styles.navigationgoicon}
-          />
+          <LinearGradient
+            colors={["#546DF2", "#A154F2"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.button}
+          >
+            <Text style={styles.startText}>START</Text>
+            {/* <AntDesign
+              name="right"
+              size={24}
+              color="white"
+              style={styles.navigationgoicon}
+            /> */}
+          </LinearGradient>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => {
-            props.navigation.navigate("Camera");
-          }}
-          style={styles.navigation}
-        >
-          <FontAwesome name="camera" size={24} color="white" />
-          <Text style={styles.navigationtext}>Take a Photo</Text>
-          <AntDesign
-            name="right"
-            size={24}
-            color="white"
-            style={styles.navigationgoicon}
-          />
-        </TouchableOpacity>
-      </ScrollView>
+      </View>
     </View>
   );
 }
@@ -70,32 +60,45 @@ const styles = StyleSheet.create({
   banner: {
     justifyContent: "center",
     alignItems: "center",
+    flex: 2,
+  },
+
+  start: {
+    flex: 1,
   },
   bannerImage: {
     width: "100%",
-    height: 200,
+    height: 300,
     resizeMode: "cover",
   },
   bannertext: {
     color: "white",
     fontSize: 24,
-    fontWeight: "600",
+    fontWeight: 600,
     position: "absolute",
     bottom: 0,
   },
-  navigationtext: {
-    color: "white",
-    margin: 10,
-  },
-  navigation: {
-    margin: 20,
-    flexDirection: "row",
+  startButton: {
+    backgroundColor: "transparent",
+    justifyContent: "center",
     alignItems: "center",
-    borderBottomColor: "white",
-    borderBottomWidth: 1,
+  },
+  button: {
+    color: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 180,
+    height: 60,
+    margin: 2,
+    borderRadius: 24,
+  },
+  startText: {
+    color: "white",
+    fontWeight: "normal",
+    fontSize: 24,
   },
   navigationgoicon: {
     position: "absolute",
-    right: 2,
+    right: 20,
   },
 });

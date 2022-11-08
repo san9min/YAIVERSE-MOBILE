@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TeamScreen from "./screens/tab_screens/team";
 import ExampleScreen from "./screens/tab_screens/style_example";
 import MainScreen from "./screens/main";
-import PhotoScreen from "./screens/tab_screens/image_pick";
 import UserScreen from "./screens/tab_screens/user";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
@@ -26,14 +25,18 @@ export default function BottomTabs() {
         component={MainScreen}
         options={{
           tabBarLabel: ({ focused, color, size }) => (
-            <Text style={{ color: focused ? "gold" : "grey", fontSize: 12 }}>
+            <Text style={{ color: focused ? "#A154F2" : "grey", fontSize: 12 }}>
               Home
             </Text>
           ),
           headerShown: false,
           tabBarIcon: ({ size, focused, color }) => {
             return (
-              <Entypo name="home" size={24} color={focused ? "gold" : "grey"} />
+              <Entypo
+                name="home"
+                size={24}
+                color={focused ? "#A154F2" : "grey"}
+              />
             );
           },
         }}
@@ -43,59 +46,17 @@ export default function BottomTabs() {
         component={ExampleScreen}
         options={{
           tabBarLabel: ({ size, focused, color }) => (
-            <Text style={{ color: focused ? "gold" : "grey", fontSize: 12 }}>
-              World
+            <Text style={{ color: focused ? "#A154F2" : "grey", fontSize: 12 }}>
+              Style
             </Text>
           ),
           headerShown: false,
           tabBarIcon: ({ size, focused, color }) => {
             return (
               <Ionicons
-                name="planet"
+                name="brush-sharp"
                 size={24}
-                color={focused ? "gold" : "grey"}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="PhotoPick"
-        component={PhotoScreen}
-        options={{
-          tabBarLabel: ({ size, focused, color }) => (
-            <Text style={{ color: focused ? "gold" : "grey", fontSize: 12 }}>
-              Photo
-            </Text>
-          ),
-          headerShown: false,
-          tabBarIcon: ({ size, focused, color }) => {
-            return (
-              <FontAwesome
-                name="plus-square"
-                size={24}
-                color={focused ? "gold" : "grey"}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name="Team"
-        component={TeamScreen}
-        options={{
-          tabBarLabel: ({ size, focused, color }) => (
-            <Text style={{ color: focused ? "gold" : "grey", fontSize: 12 }}>
-              Team
-            </Text>
-          ),
-          headerShown: false,
-          tabBarIcon: ({ size, focused, color }) => {
-            return (
-              <Ionicons
-                name="business"
-                size={24}
-                color={focused ? "gold" : "grey"}
+                color={focused ? "#A154F2" : "grey"}
               />
             );
           },
@@ -106,7 +67,7 @@ export default function BottomTabs() {
         component={UserScreen}
         options={{
           tabBarLabel: ({ size, focused, color }) => (
-            <Text style={{ color: focused ? "gold" : "grey", fontSize: 12 }}>
+            <Text style={{ color: focused ? "#A154F2" : "grey", fontSize: 12 }}>
               Avatar
             </Text>
           ),
@@ -116,7 +77,28 @@ export default function BottomTabs() {
               <FontAwesome
                 name="user-circle"
                 size={24}
-                color={focused ? "gold" : "grey"}
+                color={focused ? "#A154F2" : "grey"}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Team"
+        component={TeamScreen}
+        options={{
+          tabBarLabel: ({ size, focused, color }) => (
+            <Text style={{ color: focused ? "#A154F2" : "grey", fontSize: 12 }}>
+              Team
+            </Text>
+          ),
+          headerShown: false,
+          tabBarIcon: ({ size, focused, color }) => {
+            return (
+              <Ionicons
+                name="business"
+                size={24}
+                color={focused ? "#A154F2" : "grey"}
               />
             );
           },

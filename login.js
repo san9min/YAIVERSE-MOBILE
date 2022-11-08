@@ -11,6 +11,7 @@ import {
   Image,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function LoginScreen(props) {
   const [textInputValue, setTextInputValue] = useState("");
@@ -24,7 +25,7 @@ export default function LoginScreen(props) {
       setTextInputValue("");
       getValueFunction();
     } else {
-      alert("Please write your code");
+      alert("ID를 입력해주세요!");
     }
   };
   const getValueFunction = () => {
@@ -33,37 +34,46 @@ export default function LoginScreen(props) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableWithoutFeedback>
+        <View style={styles.topmargin}></View>
+      </TouchableWithoutFeedback>
       <View style={styles.titleArea}>
         <Image
-          source={require("./assets/logoText.png")}
-          style={{ resizeMode: "contain", width: 240, height: 150 }}
+          source={require("./assets/logo.png")}
+          style={{ resizeMode: "contain", width: 380, height: 380 }}
         />
-        {/* <Text style={styles.title}>YAIVERSE</Text> */}
       </View>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.loginform}>
           <TextInput
-            placeholder="Your Own Secret Code"
+            placeholder="ID"
+            placeholderTextColor="white"
+            color="white"
             style={styles.input}
             onChangeText={(data) => setTextInputValue(data)}
             value={textInputValue}
           />
-          <Text style={{ color: "grey", textAlign: "center" }}>
+          <Text style={{ color: "grey", textAlign: "center", margin: 12 }}>
             당신만의 코드를 입력해주세요
           </Text>
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={saveValueFunction}
-          >
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: "bold",
-                color: "white",
-              }}
+
+          <TouchableOpacity onPress={saveValueFunction}>
+            <LinearGradient
+              colors={["#546DF2", "#A154F2"]}
+              style={styles.loginButton}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
             >
-              Go In
-            </Text>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              >
+                LOGIN
+              </Text>
+            </LinearGradient>
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
@@ -73,11 +83,14 @@ export default function LoginScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgb(25, 39, 52)",
+    backgroundColor: "#1B192C",
     flex: 1,
   },
+  topmargin: {
+    flex: 2,
+  },
   titleArea: {
-    flex: 3,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -92,20 +105,22 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
+    marginHorizontal: 36,
     borderWidth: 1,
+    borderColor: "white",
     padding: 10,
-    backgroundColor: "white",
+    borderRadius: 20,
+    backgroundColor: "transparent",
   },
   loginButtonContainer: {
     flex: 2,
   },
   loginButton: {
-    backgroundColor: "dodgerblue",
+    backgroundColor: "#546DF2",
     color: "white",
     alignItems: "center",
     padding: 8,
-    borderRadius: 8,
-    margin: 36,
+    borderRadius: 20,
+    marginHorizontal: 36,
   },
 });
