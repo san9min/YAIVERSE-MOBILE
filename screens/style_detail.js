@@ -64,6 +64,7 @@ export default function DetailScreen(props) {
           margin: 20,
           fontSize: 24,
           textAlign: "center",
+          fontFamily: "Nunito_800ExtraBold",
         }}
       >
         {name}
@@ -130,6 +131,7 @@ export default function DetailScreen(props) {
                   fontSize: 18,
                   fontWeight: "bold",
                   color: "white",
+                  fontFamily: "Nunito_800ExtraBold",
                 }}
               >
                 Generate your own Avatar

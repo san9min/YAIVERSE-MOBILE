@@ -91,7 +91,11 @@ export default function ResultScreen(props) {
       <SafeAreaView>
         <View>
           <View style={styles.title}>
-            <Text style={styles.titletext}>{style} AVATAR</Text>
+            <Text
+              style={[styles.titletext, { fontFamily: "Nunito_800ExtraBold" }]}
+            >
+              {style} AVATAR
+            </Text>
           </View>
           {!resultImage && (
             <View

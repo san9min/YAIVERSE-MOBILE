@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useEffect } from "react";
 
 import MainScreen from "./screens/main";
 import StartScreen from "./screens/start";
@@ -13,12 +14,48 @@ import DetailScreen from "./screens/style_detail";
 import BottomTabs from "./tab";
 import LoginScreen from "./login";
 import React, { useState } from "react";
-
+import {
+  Nunito_800ExtraBold,
+  Nunito_400Regular,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+} from "@expo-google-fonts/nunito";
+import * as Font from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 const Stack = createStackNavigator();
-
+function cacheFonts(fonts) {
+  return fonts.map((font) => Font.loadAsync(font));
+}
 export default function App() {
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function loadResourcesAndDataAsync() {
+      try {
+        SplashScreen.preventAutoHideAsync();
+        const fontAssets = cacheFonts([
+          { Nunito_800ExtraBold: Nunito_800ExtraBold },
+          { Nunito_400Regular: Nunito_400Regular },
+          { Nunito_600SemiBold: Nunito_600SemiBold },
+          { Nunito_700Bold_Italic: Nunito_700Bold },
+        ]);
+        await Promise.all([...fontAssets]);
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+        SplashScreen.hideAsync();
+      }
+    }
+
+    loadResourcesAndDataAsync();
+  }, []);
+
   const [id, setId] = useState(null);
-  if (id == null) {
+  if (!appIsReady) {
+    return null;
+  }
+  if (id == null && appIsReady) {
     return <LoginScreen id={id} setId={setId} />;
   } else {
     return (
@@ -49,6 +86,7 @@ export default function App() {
                 fontWeight: "bold",
                 color: "#546DF2",
                 fontSize: 24,
+                fontFamily: "Nunito_800ExtraBold",
               },
               headerBackTitleVisible: false,
             }}
@@ -68,6 +106,7 @@ export default function App() {
                 fontWeight: "bold",
                 color: "#546DF2",
                 fontSize: 24,
+                fontFamily: "Nunito_800ExtraBold",
               },
               headerBackTitleVisible: false,
             }}
@@ -87,6 +126,7 @@ export default function App() {
                 fontWeight: "bold",
                 color: "#546DF2",
                 fontSize: 24,
+                fontFamily: "Nunito_800ExtraBold",
               },
               headerBackTitleVisible: false,
             }}
@@ -105,6 +145,7 @@ export default function App() {
                 fontWeight: "bold",
                 color: "#546DF2",
                 fontSize: 24,
+                fontFamily: "Nunito_800ExtraBold",
               },
               headerBackTitleVisible: false,
             }}

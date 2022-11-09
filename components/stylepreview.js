@@ -34,7 +34,11 @@ function StylePreview(props) {
               borderRadius: 2,
             }}
           />
-          <Text style={styles.styletext}>{name}</Text>
+          <Text
+            style={[styles.styletext, { fontFamily: "Nunito_600SemiBold" }]}
+          >
+            {name}
+          </Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -47,7 +51,7 @@ export default StylePreview;
 const styles = StyleSheet.create({
   styletext: {
     color: "white",
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: "500",
     marginTop: 5,
   },

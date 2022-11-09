@@ -30,7 +30,11 @@ export default function StartScreen(props) {
             style={styles.button}
           >
             <FontAwesome name="photo" size={36} color="white" />
-            <Text style={styles.startText}>Gallery</Text>
+            <Text
+              style={[styles.startText, { fontFamily: "Nunito_400Regular" }]}
+            >
+              Gallery
+            </Text>
           </LinearGradient>
         </TouchableOpacity>
 
@@ -47,7 +51,11 @@ export default function StartScreen(props) {
             style={styles.button}
           >
             <Entypo name="camera" size={36} color="white" />
-            <Text style={styles.startText}>Camera</Text>
+            <Text
+              style={[styles.startText, { fontFamily: "Nunito_400Regular" }]}
+            >
+              Camera
+            </Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>

@@ -31,9 +31,10 @@ export default function StyleChooseScreen(props) {
           <Text
             style={{
               color: "white",
-              fontSize: 18,
+              fontSize: 24,
               fontWeight: "bold",
               marginHorizontal: 12,
+              fontFamily: "Nunito_800ExtraBold",
             }}
           >
             Choose a Style

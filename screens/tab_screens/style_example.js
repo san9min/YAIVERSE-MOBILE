@@ -1,14 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import React, { useEffect, useState, useCallback } from "react";
+import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import StylePreview from "../../components/stylepreview";
 
@@ -19,10 +10,19 @@ export default function ExampleScreen(props) {
     AsyncStorage.getItem("ID").then((value) => setId(value));
   };
   useEffect(getIdFunction, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.titletext}>STYLE</Text>
+        <Text
+          style={{
+            fontSize: 24,
+            color: "#546DF2",
+            fontFamily: "Nunito_800ExtraBold",
+          }}
+        >
+          STYLE
+        </Text>
       </View>
       <View>
         {id == null ? (

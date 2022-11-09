@@ -21,10 +21,14 @@ export default function TeamScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.titletext}>About YAIverse</Text>
+        <Text style={[styles.titletext, { fontFamily: "Nunito_800ExtraBold" }]}>
+          About YAIverse
+        </Text>
       </View>
       <View>
-        <Text style={styles.memeber}>Member</Text>
+        <Text style={[styles.memeber, { fontFamily: "Nunito_800ExtraBold" }]}>
+          Member
+        </Text>
       </View>
       <ScrollView>
         <View style={styles.teamContainer}>

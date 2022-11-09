@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -11,8 +11,6 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
 
 export default function LoginScreen(props) {
   const [textInputValue, setTextInputValue] = useState("");
@@ -33,35 +31,8 @@ export default function LoginScreen(props) {
     AsyncStorage.getItem("ID").then((value) => setGetValue(value));
   };
 
-  const [fontsLoaded] = useFonts({
-    PretendardSemiBold: require("./assets/fonts/Pretendard-SemiBold.otf"),
-    PretendardBold: require("./assets/fonts/Pretendard-Bold.otf"),
-    PretendardExtraBold: require("./assets/fonts/Pretendard-ExtraBold.otf"),
-    PretendardExtraLight: require("./assets/fonts/Pretendard-ExtraLight.otf"),
-    PretendardLight: require("./assets/fonts/Pretendard-Light.otf"),
-    PretendardRegular: require("./assets/fonts/Pretendard-Regular.otf"),
-    PretendardThin: require("./assets/fonts/Pretendard-Thin.otf"),
-    PretendardBlack: require("./assets/fonts/Pretendard-Black.otf"),
-  });
-  useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
-    }
-    prepare();
-  }, []);
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      console.log();
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
+    <View style={styles.container}>
       <TouchableWithoutFeedback>
         <View style={styles.topmargin}></View>
       </TouchableWithoutFeedback>
@@ -74,7 +45,7 @@ export default function LoginScreen(props) {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.loginform}>
           <TextInput
-            placeholder="ID"
+            placeholder="   ID"
             placeholderTextColor="white"
             color="white"
             style={styles.input}
@@ -86,7 +57,6 @@ export default function LoginScreen(props) {
               color: "grey",
               textAlign: "center",
               margin: 12,
-              fontFamily: "PretendardThin",
             }}
           >
             당신만의 코드를 입력해주세요
@@ -101,10 +71,10 @@ export default function LoginScreen(props) {
             >
               <Text
                 style={{
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: "bold",
                   color: "white",
-                  fontFamily: "PretendardBold",
+                  fontFamily: "Nunito_800ExtraBold",
                 }}
               >
                 LOGIN

@@ -54,7 +54,14 @@ export default function GalleryScreen(props) {
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
             >
-              <Text style={styles.buttonText}>Pick a Photo</Text>
+              <Text
+                style={[
+                  styles.buttonText,
+                  { fontFamily: "Nunito_800ExtraBold" },
+                ]}
+              >
+                Pick a Photo
+              </Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
@@ -90,7 +97,14 @@ export default function GalleryScreen(props) {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
               >
-                <Text style={styles.buttonText}>Continue</Text>
+                <Text
+                  style={[
+                    styles.buttonText,
+                    { fontFamily: "Nunito_800ExtraBold" },
+                  ]}
+                >
+                  Continue
+                </Text>
               </LinearGradient>
             </TouchableOpacity>
           </View>
@@ -161,7 +175,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
   buttonText: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "500",
     color: "white",
   },

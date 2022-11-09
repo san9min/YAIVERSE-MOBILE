@@ -37,7 +37,11 @@ export default function MainScreen(props) {
             end={{ x: 1, y: 1 }}
             style={styles.button}
           >
-            <Text style={styles.startText}>START</Text>
+            <Text
+              style={[styles.startText, { fontFamily: "Nunito_800ExtraBold" }]}
+            >
+              START
+            </Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>

@@ -39,7 +39,11 @@ export default function UserScreen(props) {
         {id == null ? (
           <Text>YAIverse</Text>
         ) : (
-          <Text style={styles.titletext}>{id}</Text>
+          <Text
+            style={[styles.titletext, { fontFamily: "Nunito_800ExtraBold" }]}
+          >
+            {id}
+          </Text>
         )}
       </View>
       <View>
