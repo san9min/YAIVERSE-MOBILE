@@ -10,7 +10,6 @@ import {
   LogBox,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 
 LogBox.ignoreLogs(["Sending"]); //navigation에서 경고 계속있는데 해결 못해서 우선 ignore
 
@@ -39,12 +38,6 @@ export default function MainScreen(props) {
             style={styles.button}
           >
             <Text style={styles.startText}>START</Text>
-            {/* <AntDesign
-              name="right"
-              size={24}
-              color="white"
-              style={styles.navigationgoicon}
-            /> */}
           </LinearGradient>
         </TouchableOpacity>
       </View>
@@ -69,12 +62,11 @@ const styles = StyleSheet.create({
   bannerImage: {
     width: "100%",
     height: 300,
-    resizeMode: "cover",
+    resizeMode: "contain",
   },
   bannertext: {
     color: "white",
     fontSize: 24,
-    fontWeight: 600,
     position: "absolute",
     bottom: 0,
   },
@@ -94,8 +86,8 @@ const styles = StyleSheet.create({
   },
   startText: {
     color: "white",
-    fontWeight: "normal",
-    fontSize: 24,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   navigationgoicon: {
     position: "absolute",

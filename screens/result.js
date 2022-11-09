@@ -34,15 +34,17 @@ export default function ResultScreen(props) {
   const windowWidth = Dimensions.get("window").width;
   const fileUri = FileSystem.documentDirectory + "myFile.png";
   const getPermissions = async () => {
-    const { status, canAskAgain } = await MediaLibrary.getPermissionsAsync();
+    if (!ok) {
+      const { status, canAskAgain } = await MediaLibrary.getPermissionsAsync();
 
-    if (status === "undetermined" && canAskAgain) {
-      const { status } = await MediaLibrary.requestPermissionsAsync();
-      if (status !== "undetermined") {
+      if (status === "undetermined" && canAskAgain) {
+        const { status } = await MediaLibrary.requestPermissionsAsync();
+        if (status !== "undetermined") {
+          setOk(true);
+        }
+      } else if (status !== "undetermined") {
         setOk(true);
       }
-    } else if (status !== "undetermined") {
-      setOk(true);
     }
   };
 
@@ -146,22 +148,20 @@ export default function ResultScreen(props) {
                 >
                   <TouchableOpacity
                     onPress={async () => {
-                      console.log("donwloading...1");
                       getPermissions();
                       const downloadedFile = await FileSystem.downloadAsync(
                         `${API_URL}/file/${resultImage}/`,
                         fileUri
                       );
-                      console.log("donwloading...2");
                       const asset = await MediaLibrary.createAssetAsync(
                         downloadedFile["uri"]
                       );
-                      console.log("donwloading...3");
+
                       const album = await MediaLibrary.createAlbumAsync(
                         "DownLoads",
                         asset
                       );
-                      console.log("donwloading...4");
+
                       await MediaLibrary.addAssetsToAlbumAsync(
                         asset,
                         album,

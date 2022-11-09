@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -12,7 +12,8 @@ import ResultScreen from "./screens/result";
 import DetailScreen from "./screens/style_detail";
 import BottomTabs from "./tab";
 import LoginScreen from "./login";
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useState } from "react";
+
 const Stack = createStackNavigator();
 
 export default function App() {

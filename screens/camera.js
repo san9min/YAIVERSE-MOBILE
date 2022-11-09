@@ -33,7 +33,7 @@ export default function CameraScreen(props) {
       const options = { quality: 1.0, base64: true };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
-
+      console.log(source);
       if (source) {
         await cameraRef.current.pausePreview();
         setIsPreview(true);

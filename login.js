@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
   StyleSheet,
   Text,
-  SafeAreaView,
   TouchableOpacity,
   TextInput,
   Keyboard,
@@ -12,6 +11,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 
 export default function LoginScreen(props) {
   const [textInputValue, setTextInputValue] = useState("");
@@ -32,8 +33,35 @@ export default function LoginScreen(props) {
     AsyncStorage.getItem("ID").then((value) => setGetValue(value));
   };
 
+  const [fontsLoaded] = useFonts({
+    PretendardSemiBold: require("./assets/fonts/Pretendard-SemiBold.otf"),
+    PretendardBold: require("./assets/fonts/Pretendard-Bold.otf"),
+    PretendardExtraBold: require("./assets/fonts/Pretendard-ExtraBold.otf"),
+    PretendardExtraLight: require("./assets/fonts/Pretendard-ExtraLight.otf"),
+    PretendardLight: require("./assets/fonts/Pretendard-Light.otf"),
+    PretendardRegular: require("./assets/fonts/Pretendard-Regular.otf"),
+    PretendardThin: require("./assets/fonts/Pretendard-Thin.otf"),
+    PretendardBlack: require("./assets/fonts/Pretendard-Black.otf"),
+  });
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      console.log();
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container} onLayout={onLayoutRootView}>
       <TouchableWithoutFeedback>
         <View style={styles.topmargin}></View>
       </TouchableWithoutFeedback>
@@ -53,7 +81,14 @@ export default function LoginScreen(props) {
             onChangeText={(data) => setTextInputValue(data)}
             value={textInputValue}
           />
-          <Text style={{ color: "grey", textAlign: "center", margin: 12 }}>
+          <Text
+            style={{
+              color: "grey",
+              textAlign: "center",
+              margin: 12,
+              fontFamily: "PretendardThin",
+            }}
+          >
             당신만의 코드를 입력해주세요
           </Text>
 
@@ -69,6 +104,7 @@ export default function LoginScreen(props) {
                   fontSize: 18,
                   fontWeight: "bold",
                   color: "white",
+                  fontFamily: "PretendardBold",
                 }}
               >
                 LOGIN
@@ -77,7 +113,7 @@ export default function LoginScreen(props) {
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -87,10 +123,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topmargin: {
-    flex: 2,
+    flex: 3,
   },
   titleArea: {
     flex: 1,
+    marginBottom: 36,
     justifyContent: "center",
     alignItems: "center",
   },

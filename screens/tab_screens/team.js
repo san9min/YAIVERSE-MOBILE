@@ -15,6 +15,7 @@ export default function TeamScreen(props) {
   const ImageSet = {
     minsu: require("../../assets/team/minsu.png"),
     jisoo: require("../../assets/team/jisoo.png"),
+    sangmin: require("../../assets/team/sangmin.jpg"),
   };
 
   return (
@@ -27,66 +28,6 @@ export default function TeamScreen(props) {
       </View>
       <ScrollView>
         <View style={styles.teamContainer}>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: windowWidth / 2,
-            }}
-          >
-            <Character character_image={ImageSet["minsu"]} />
-            <Text style={styles.teamoneName}>김민수</Text>
-            <Text style={styles.teamoneRole}>AI LEADER</Text>
-            <Text style={styles.teamoneTh}>YAI 7th</Text>
-          </View>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: windowWidth / 2,
-            }}
-          >
-            <Character character_image={ImageSet["minsu"]} />
-            <Text style={styles.teamoneName}>김민수</Text>
-            <Text style={styles.teamoneRole}>AI LEADER</Text>
-            <Text style={styles.teamoneTh}>YAI 7th</Text>
-          </View>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: windowWidth / 2,
-            }}
-          >
-            <Character character_image={ImageSet["minsu"]} />
-            <Text style={styles.teamoneName}>김민수</Text>
-            <Text style={styles.teamoneRole}>AI LEADER</Text>
-            <Text style={styles.teamoneTh}>YAI 7th</Text>
-          </View>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: windowWidth / 2,
-            }}
-          >
-            <Character character_image={ImageSet["minsu"]} />
-            <Text style={styles.teamoneName}>김민수</Text>
-            <Text style={styles.teamoneRole}>AI LEADER</Text>
-            <Text style={styles.teamoneTh}>YAI 7th</Text>
-          </View>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              width: windowWidth / 2,
-            }}
-          >
-            <Character character_image={ImageSet["minsu"]} />
-            <Text style={styles.teamoneName}>김민수</Text>
-            <Text style={styles.teamoneRole}>AI LEADER</Text>
-            <Text style={styles.teamoneTh}>YAI 7th</Text>
-          </View>
           <View
             style={{
               justifyContent: "center",
@@ -114,7 +55,7 @@ const styles = StyleSheet.create({
     color: "white",
     margin: 12,
     fontSize: 18,
-    fontWeight: "bolder",
+    fontWeight: "bold",
   },
   title: {
     justifyContent: "center",
@@ -136,16 +77,19 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "600",
     textAlign: "center",
+    marginBottom: 2,
   },
   teamoneRole: {
     color: "white",
     textAlign: "center",
     fontSize: 12,
     fontWeight: "500",
+    marginBottom: 2,
   },
   teamoneTh: {
     color: "white",
     textAlign: "center",
     fontSize: 12,
+    marginBottom: 2,
   },
 });

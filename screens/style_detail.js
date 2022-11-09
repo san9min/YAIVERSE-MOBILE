@@ -5,7 +5,6 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
-  SafeAreaView,
 } from "react-native";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -69,48 +68,74 @@ export default function DetailScreen(props) {
       >
         {name}
       </Text>
-      <ScrollView>
-        <View style={styles.exampleContainer}>
-          <View style={styles.exampleImage}>
-            {ImageSet[name]["input"].map((char_img, index) => {
-              return <Character character_image={char_img} key={index} />;
-            })}
+      {!imageUri && (
+        <ScrollView>
+          <View style={styles.exampleContainer}>
+            <View style={styles.exampleImage}>
+              {ImageSet[name]["input"].map((char_img, index) => {
+                return <Character character_image={char_img} key={index} />;
+              })}
+            </View>
+            <View style={styles.arrow}>
+              <FontAwesome name="arrow-right" size={24} color="white" />
+            </View>
+            <View style={styles.exampleImage}>
+              {ImageSet[name]["result"].map((char_img, index) => {
+                return <Character character_image={char_img} key={index} />;
+              })}
+            </View>
           </View>
-          <View style={styles.arrow}>
-            <FontAwesome name="arrow-right" size={24} color="white" />
-          </View>
-          <View style={styles.exampleImage}>
-            {ImageSet[name]["result"].map((char_img, index) => {
-              return <Character character_image={char_img} key={index} />;
-            })}
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
       {imageUri && (
-        <View style={styles.uploadButtonContainer}>
-          <TouchableOpacity
-            style={styles.uploadButton}
-            onPress={() => {
-              props.navigation.reset({
-                routes: [
-                  {
-                    name: "Result",
-                    params: { style: name, imageUri: imageUri, id: id },
-                  },
-                ],
-              });
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 18,
-                fontWeight: "bold",
-                color: "white",
+        <View>
+          <View style={styles.exampleContainer}>
+            <View style={styles.exampleImage}>
+              <Image
+                source={{ uri: imageUri }}
+                style={{
+                  resizeMode: "cover",
+                  width: 100,
+                  height: 100,
+                  borderRadius: 70,
+                  overflow: "hidden",
+                  margin: 10,
+                }}
+              />
+            </View>
+            <View style={styles.arrow}>
+              <FontAwesome name="arrow-right" size={24} color="white" />
+            </View>
+            <View style={styles.exampleImage}>
+              <FontAwesome name="question-circle" size={120} color="grey" />
+            </View>
+          </View>
+
+          <View style={styles.uploadButtonContainer}>
+            <TouchableOpacity
+              style={styles.uploadButton}
+              onPress={() => {
+                props.navigation.reset({
+                  routes: [
+                    {
+                      name: "Result",
+                      params: { style: name, imageUri: imageUri, id: id },
+                    },
+                  ],
+                });
               }}
             >
-              Generate your own Avatar
-            </Text>
-          </TouchableOpacity>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              >
+                Generate your own Avatar
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>
@@ -139,8 +164,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   uploadButtonContainer: {
-    flex: 2,
     justifyContent: "center",
+    marginTop: 150,
   },
   uploadButton: {
     backgroundColor: "#546DF2",

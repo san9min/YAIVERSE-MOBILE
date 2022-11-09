@@ -3,7 +3,7 @@ import TeamScreen from "./screens/tab_screens/team";
 import ExampleScreen from "./screens/tab_screens/style_example";
 import MainScreen from "./screens/main";
 import UserScreen from "./screens/tab_screens/user";
-import { View, Text, TouchableOpacity } from "react-native";
+import { Text } from "react-native";
 import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
