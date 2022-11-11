@@ -88,7 +88,10 @@ export default function GalleryScreen(props) {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate("StyleChoose", { image: image });
+                props.navigation.navigate("StyleChoose", {
+                  image: image,
+                  col: null,
+                });
               }}
             >
               <LinearGradient

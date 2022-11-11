@@ -24,8 +24,11 @@ export default function ResultScreen(props) {
   const imageUri = props.route.params.imageUri;
   const style = props.route.params.style;
   const id = props.route.params.id;
-  const [resultImage, setresultImage] = useState(null);
+
+  const [imageCol, setImageCol] = useState(null);
   const [ok, setOk] = useState(false);
+  const [first, setFirst] = useState(true);
+  const [col, setCol] = useState(props.route.params.col);
 
   //reTry
   const [request, setRequest] = useState(false);
@@ -36,7 +39,7 @@ export default function ResultScreen(props) {
   const getPermissions = async () => {
     const { status, canAskAgain } = await MediaLibrary.getPermissionsAsync();
     if (status === "denied" && canAskAgain) {
-      const { status } = await MediaLibrary.requestPermissionsAsync();
+      const { approval } = await MediaLibrary.requestPermissionsAsync();
     }
     if (status === "undetermined" && canAskAgain) {
       const { status } = await MediaLibrary.requestPermissionsAsync();
@@ -49,36 +52,81 @@ export default function ResultScreen(props) {
   };
 
   useEffect(() => {
-    setresultImage(null);
-    const formData = new FormData();
-    formData.append("style", style);
-    formData.append("id", id);
-    formData.append("file", {
-      uri: imageUri,
-      type: "image/png",
-      name: "originalImage.png",
-    });
+    setImageCol(null);
+    if (first) {
+      setFirst(false);
 
-    axios
-      .post(`${API_URL}/file/`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((result) => {
-        setresultImage(result.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("사진 변환에 실패했습니다.");
-        props.navigation.reset({
-          routes: [
-            {
-              name: "Tab",
-            },
-          ],
+      if (col !== null) {
+        const formData = new FormData();
+        formData.append("style", style);
+        axios
+          .post(`${API_URL}/file/${col}/`, formData)
+          .then((result) => {
+            console.log(result.data);
+            setImageCol(result.data.image_col);
+            setCol(result.data.col);
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("사진 변환에 실패했습니다.");
+            props.navigation.reset({
+              routes: [
+                {
+                  name: "Tab",
+                },
+              ],
+            });
+          });
+      } else {
+        const formData = new FormData();
+        formData.append("style", style);
+        formData.append("id", id);
+        formData.append("file", {
+          uri: imageUri,
+          type: "image/png",
+          name: "originalImage.png",
         });
-      });
+        axios
+          .post(`${API_URL}/file/`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((result) => {
+            setImageCol(result.data.image_col);
+            setCol(result.data.col);
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("사진 변환에 실패했습니다.");
+            props.navigation.reset({
+              routes: [
+                {
+                  name: "Tab",
+                },
+              ],
+            });
+          });
+      }
+    } else {
+      axios
+        .post(`${API_URL}/file/re/${imageCol}/`)
+        .then((result) => {
+          setImageCol(result.data.image_col);
+          setCol(result.data.col);
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("사진 변환에 실패했습니다.");
+          props.navigation.reset({
+            routes: [
+              {
+                name: "Tab",
+              },
+            ],
+          });
+        });
+    }
   }, [request]);
 
   return (
@@ -92,7 +140,7 @@ export default function ResultScreen(props) {
               {style} AVATAR
             </Text>
           </View>
-          {!resultImage && (
+          {!imageCol && (
             <View
               style={{
                 height: height / 1.5,
@@ -104,7 +152,7 @@ export default function ResultScreen(props) {
             </View>
           )}
 
-          {resultImage && (
+          {imageCol && (
             <View>
               <View
                 style={{
@@ -115,7 +163,7 @@ export default function ResultScreen(props) {
               >
                 <Image
                   source={{
-                    uri: `${API_URL}/image/${resultImage}`,
+                    uri: `${API_URL}/image/${imageCol}`,
                   }}
                   style={{
                     width: "100%",
@@ -151,7 +199,7 @@ export default function ResultScreen(props) {
                     onPress={async () => {
                       getPermissions();
                       const downloadedFile = await FileSystem.downloadAsync(
-                        `${API_URL}/image/${resultImage}`,
+                        `${API_URL}/image/${imageCol}`,
                         fileUri
                       );
                       const asset = await MediaLibrary.createAssetAsync(
@@ -213,6 +261,34 @@ export default function ResultScreen(props) {
                     <Foundation name="home" size={24} color="#A154F2" />
                   </TouchableOpacity>
                 </View>
+              </View>
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    props.navigation.navigate("StyleChoose", {
+                      image: imageUri,
+                      col: col,
+                    });
+                  }}
+                >
+                  <LinearGradient
+                    colors={["#546DF2", "#A154F2"]}
+                    style={styles.anotherButton}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        color: "white",
+                        fontFamily: "Nunito_800ExtraBold",
+                      }}
+                    >
+                      Another Style
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
               </View>
             </View>
           )}
@@ -283,5 +359,13 @@ const styles = StyleSheet.create({
   textStyle: {
     marginTop: 24,
     fontWeight: "bold",
+  },
+  anotherButton: {
+    backgroundColor: "#546DF2",
+    color: "white",
+    alignItems: "center",
+    padding: 8,
+    borderRadius: 20,
+    marginHorizontal: 48,
   },
 });

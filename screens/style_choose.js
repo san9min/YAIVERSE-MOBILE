@@ -13,6 +13,7 @@ import StylePreview from "../components/stylepreview";
 export default function StyleChooseScreen(props) {
   const windowWidth = Dimensions.get("window").width;
   const imageUri = props.route.params.image;
+  const col = props.route.params.col;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,60 +48,70 @@ export default function StyleChooseScreen(props) {
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="DISNEY"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="SKETCH"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="ART"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="ARCANE"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="침착맨"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="외모지상주의"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="여신강림"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="이태원클라쓰"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
             <StylePreview
               name="프리드로우"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
+              col={col}
             />
           </View>
         </ScrollView>

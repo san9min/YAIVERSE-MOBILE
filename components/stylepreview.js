@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 function StylePreview(props) {
   const name = props.name;
   const imageUri = props.imageUri;
+  const col = props.col;
   const width = parseInt(props.width / 2.5);
   const heigth = parseInt(props.width / 4);
   const BannerSet = {
@@ -25,6 +26,7 @@ function StylePreview(props) {
           props.navigation.navigate("Detail", {
             name: name,
             imageUri: imageUri,
+            col: col,
           });
         }}
       >

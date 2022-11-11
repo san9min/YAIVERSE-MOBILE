@@ -127,7 +127,10 @@ export default function CameraScreen(props) {
           <View style={styles.continueButtonContainer}>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate("StyleChoose", { image: image });
+                props.navigation.navigate("StyleChoose", {
+                  image: image,
+                  col: null,
+                });
               }}
             >
               <LinearGradient

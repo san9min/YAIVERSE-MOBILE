@@ -15,6 +15,8 @@ import { FontAwesome } from "@expo/vector-icons";
 export default function DetailScreen(props) {
   const name = props.route.params.name;
   const imageUri = props.route.params.imageUri;
+
+  const col = props.route.params.col;
   const [id, setId] = useState(null);
   const getIdFunction = () => {
     AsyncStorage.getItem("ID").then((value) => setId(value));
@@ -165,7 +167,12 @@ export default function DetailScreen(props) {
                   routes: [
                     {
                       name: "Result",
-                      params: { style: name, imageUri: imageUri, id: id },
+                      params: {
+                        style: name,
+                        imageUri: imageUri,
+                        id: id,
+                        col: col,
+                      },
                     },
                   ],
                 });
