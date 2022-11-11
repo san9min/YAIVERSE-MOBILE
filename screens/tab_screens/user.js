@@ -70,7 +70,7 @@ export default function UserScreen(props) {
                       borderWidth: 1,
                     }}
                     source={{
-                      uri: `${API_URL}/file/${key}/`,
+                      uri: `${API_URL}/image/${key}/`,
                     }}
                   />
                 );

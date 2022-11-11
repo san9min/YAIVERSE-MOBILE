@@ -17,7 +17,6 @@ import { API_URL } from "../config/constant";
 import { LinearGradient } from "expo-linear-gradient";
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
-//import AnimatedSplash from "react-native-animated-splash-screen";
 
 export default function ResultScreen(props) {
   const height = Dimensions.get("window").height;

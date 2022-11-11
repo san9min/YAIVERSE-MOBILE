@@ -5,9 +5,12 @@ import Character from "../../components/character";
 export default function TeamScreen(props) {
   const windowWidth = Dimensions.get("window").width;
   const ImageSet = {
-    minsu: require("../../assets/team/minsu.png"),
-    jisoo: require("../../assets/team/jisoo.png"),
+    minsu: require("../../assets/team/minsu.jpg"),
     sangmin: require("../../assets/team/sangmin.jpg"),
+    jisoo: require("../../assets/team/jisoo.jpg"),
+    chanhyuk: require("../../assets/team/chanhyuk.jpg"),
+    juyeon: require("../../assets/team/juyeon.jpg"),
+    chanmi: require("../../assets/team/chanmi.jpg"),
   };
 
   return (
@@ -33,8 +36,20 @@ export default function TeamScreen(props) {
           >
             <Character character_image={ImageSet["minsu"]} />
             <Text style={styles.teamoneName}>김민수</Text>
-            <Text style={styles.teamoneRole}>AI LEADER</Text>
+            <Text style={styles.teamoneRole}>AI Lead</Text>
             <Text style={styles.teamoneTh}>YAI 7th</Text>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              width: windowWidth / 2,
+            }}
+          >
+            <Character character_image={ImageSet["juyeon"]} />
+            <Text style={styles.teamoneName}>김주연</Text>
+            <Text style={styles.teamoneRole}>AI / Design</Text>
+            <Text style={styles.teamoneTh}>YAI 8th</Text>
           </View>
           <View
             style={{
@@ -45,8 +60,44 @@ export default function TeamScreen(props) {
           >
             <Character character_image={ImageSet["sangmin"]} />
             <Text style={styles.teamoneName}>이상민</Text>
-            <Text style={styles.teamoneRole}>TEAM LEADER</Text>
+            <Text style={styles.teamoneRole}>TEAM Lead</Text>
             <Text style={styles.teamoneTh}>YAI 9th</Text>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              width: windowWidth / 2,
+            }}
+          >
+            <Character character_image={ImageSet["chanhyuk"]} />
+            <Text style={styles.teamoneName}>박찬혁</Text>
+            <Text style={styles.teamoneRole}>DEV Lead</Text>
+            <Text style={styles.teamoneTh}>YAI 9th</Text>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              width: windowWidth / 2,
+            }}
+          >
+            <Character character_image={ImageSet["chanmi"]} />
+            <Text style={styles.teamoneName}>이찬미</Text>
+            <Text style={styles.teamoneRole}>AI</Text>
+            <Text style={styles.teamoneTh}>YAI 9th</Text>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              width: windowWidth / 2,
+            }}
+          >
+            <Character character_image={ImageSet["jisoo"]} />
+            <Text style={styles.teamoneName}>김지수</Text>
+            <Text style={styles.teamoneRole}>AI</Text>
+            <Text style={styles.teamoneTh}>YAI 10th</Text>
           </View>
         </View>
       </ScrollView>

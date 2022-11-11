@@ -37,13 +37,13 @@ export default function DetailScreen(props) {
         require("../assets/art/result/result_2.jpg"),
       ],
     },
-    // 침착맨: {
-    //   main: require("../assets/calmdown/refer.jpg"),
-    //   result: [
-    //     require("../assets/calmdown/result/result_1.jpg"),
-    //     require("../assets/calmdown/result/result_2.jpg"),
-    //   ],
-    // },
+    침착맨: {
+      main: require("../assets/calmdown/refer.jpg"),
+      result: [
+        require("../assets/calmdown/result/result_1.jpg"),
+        require("../assets/calmdown/result/result_2.jpg"),
+      ],
+    },
     DISNEY: {
       main: require("../assets/disney/refer.jpg"),
       result: [
@@ -52,21 +52,21 @@ export default function DetailScreen(props) {
       ],
     },
 
-    // 프리드로우: {
-    //   main: require("../assets/freedraw/refer.jpg"),
-    //   result: [
-    //     require("../assets/freedraw/result/result_1.jpg"),
-    //     require("../assets/freedraw/result/result_2.jpg"),
-    //   ],
-    // },
+    프리드로우: {
+      main: require("../assets/freedraw/refer.jpg"),
+      result: [
+        require("../assets/freedraw/result/result_1.png"),
+        require("../assets/freedraw/result/result_2.png"),
+      ],
+    },
 
-    // 이태원클라쓰: {
-    //   main: require("../assets/itaewonclass/refer.png"),
-    //   result: [
-    //     require("../assets/itaewonclass/result/result_1.jpg"),
-    //     require("../assets/itaewonclass/result/result_2.jpg"),
-    //   ],
-    // },
+    이태원클라쓰: {
+      main: require("../assets/itaewonclass/refer.png"),
+      result: [
+        require("../assets/itaewonclass/result/result_1.jpg"),
+        require("../assets/itaewonclass/result/result_2.jpg"),
+      ],
+    },
     JOJO: {
       main: require("../assets/jojo/refer.png"),
       result: [
@@ -90,13 +90,13 @@ export default function DetailScreen(props) {
     //   ],
     // },
 
-    // 여신강림: {
-    //   main: require("../assets/truebeauty/refer.jpg"),
-    //   result: [
-    //     require("../assets/truebeauty/result/result_1.jpg"),
-    //     require("../assets/truebeauty/result/result_2.jpg"),
-    //   ],
-    // },
+    여신강림: {
+      main: require("../assets/truebeauty/refer.jpg"),
+      result: [
+        require("../assets/truebeauty/result/result_1.jpg"),
+        require("../assets/truebeauty/result/result_2.jpg"),
+      ],
+    },
 
     INPUT: [require("../assets/input_1.jpg"), require("../assets/input_2.jpg")],
   };
