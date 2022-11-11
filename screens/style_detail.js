@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Character from "../components/character";
+import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function DetailScreen(props) {
@@ -20,37 +21,82 @@ export default function DetailScreen(props) {
   };
   useEffect(getIdFunction, []);
   const ImageSet = {
-    JOJO: {
-      main: require("../assets/jojo/refer.png"),
-      input: [require("../assets/jojo/input/input_1.jpg")],
-      result: [require("../assets/jojo/result/result_1.jpg")],
-    },
-    DISNEY: {
-      main: require("../assets/disney/refer.jpg"),
-      input: [require("../assets/disney/input/input_1.jpg")],
-      result: [require("../assets/disney/result/result_1.jpg")],
-    },
-    SKETCH: {
-      main: require("../assets/sketch/refer.png"),
-      input: [require("../assets/sketch/input/input_1.jpg")],
-      result: [require("../assets/sketch/result/result_1.jpg")],
+    ARCANE: {
+      main: require("../assets/arcane/refer.png"),
+      result: [
+        require("../assets/arcane/result/result_1.jpg"),
+        require("../assets/arcane/result/result_2.jpg"),
+      ],
     },
     ART: {
       main: require("../assets/art/refer.png"),
-      input: [require("../assets/art/input/input_1.jpg")],
-      result: [require("../assets/art/result/result_1.jpg")],
+      result: [
+        require("../assets/art/result/result_1.jpg"),
+        require("../assets/art/result/result_2.jpg"),
+      ],
+    },
+    // 침착맨: {
+    //   main: require("../assets/calmdown/refer.jpg"),
+    //   result: [
+    //     require("../assets/calmdown/result/result_1.jpg"),
+    //     require("../assets/calmdown/result/result_2.jpg"),
+    //   ],
+    // },
+    DISNEY: {
+      main: require("../assets/disney/refer.jpg"),
+      result: [
+        require("../assets/disney/result/result_1.jpg"),
+        require("../assets/disney/result/result_2.jpg"),
+      ],
     },
 
-    JINX: {
-      main: require("../assets/jinx/refer.png"),
-      input: [require("../assets/jinx/input/input_1.jpg")],
-      result: [require("../assets/jinx/result/result_1.jpg")],
+    // 프리드로우: {
+    //   main: require("../assets/freedraw/refer.jpg"),
+    //   result: [
+    //     require("../assets/freedraw/result/result_1.jpg"),
+    //     require("../assets/freedraw/result/result_2.jpg"),
+    //   ],
+    // },
+
+    // 이태원클라쓰: {
+    //   main: require("../assets/itaewonclass/refer.png"),
+    //   result: [
+    //     require("../assets/itaewonclass/result/result_1.jpg"),
+    //     require("../assets/itaewonclass/result/result_2.jpg"),
+    //   ],
+    // },
+    JOJO: {
+      main: require("../assets/jojo/refer.png"),
+      result: [
+        require("../assets/jojo/result/result_1.jpg"),
+        require("../assets/jojo/result/result_2.jpg"),
+      ],
     },
-    CAITLYN: {
-      main: require("../assets/caitlyn/refer.png"),
-      input: [require("../assets/disney/input/input_1.jpg")],
-      result: [require("../assets/disney/result/result_1.jpg")],
+    SKETCH: {
+      main: require("../assets/sketch/refer.png"),
+      result: [
+        require("../assets/sketch/result/result_1.jpg"),
+        require("../assets/sketch/result/result_2.jpg"),
+      ],
     },
+
+    // 외모지상주의: {
+    //   main: require("../assets/lookism/refer.jpg"),
+    //   result: [
+    //     require("../assets/lookism/result/result_1.jpg"),
+    //     require("../assets/lookism/result/result_2.jpg"),
+    //   ],
+    // },
+
+    // 여신강림: {
+    //   main: require("../assets/truebeauty/refer.jpg"),
+    //   result: [
+    //     require("../assets/truebeauty/result/result_1.jpg"),
+    //     require("../assets/truebeauty/result/result_2.jpg"),
+    //   ],
+    // },
+
+    INPUT: [require("../assets/input_1.jpg"), require("../assets/input_2.jpg")],
   };
 
   return (
@@ -73,7 +119,7 @@ export default function DetailScreen(props) {
         <ScrollView>
           <View style={styles.exampleContainer}>
             <View style={styles.exampleImage}>
-              {ImageSet[name]["input"].map((char_img, index) => {
+              {ImageSet["INPUT"].map((char_img, index) => {
                 return <Character character_image={char_img} key={index} />;
               })}
             </View>
@@ -114,7 +160,6 @@ export default function DetailScreen(props) {
 
           <View style={styles.uploadButtonContainer}>
             <TouchableOpacity
-              style={styles.uploadButton}
               onPress={() => {
                 props.navigation.reset({
                   routes: [
@@ -126,16 +171,23 @@ export default function DetailScreen(props) {
                 });
               }}
             >
-              <Text
-                style={{
-                  fontSize: 18,
-                  fontWeight: "bold",
-                  color: "white",
-                  fontFamily: "Nunito_800ExtraBold",
-                }}
+              <LinearGradient
+                style={styles.uploadButton}
+                colors={["#546DF2", "#A154F2"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
               >
-                Generate your own Avatar
-              </Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: "bold",
+                    color: "white",
+                    fontFamily: "Nunito_800ExtraBold",
+                  }}
+                >
+                  Generate your own Avatar
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
           </View>
         </View>

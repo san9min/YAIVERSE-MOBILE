@@ -45,7 +45,7 @@ export default function LoginScreen(props) {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.loginform}>
           <TextInput
-            placeholder="   ID"
+            placeholder="ID"
             placeholderTextColor="white"
             color="white"
             style={styles.input}
@@ -115,8 +115,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 36,
     borderWidth: 1,
     borderColor: "white",
-    padding: 10,
+    padding: 12,
+    paddingLeft: 24,
     borderRadius: 20,
+
     backgroundColor: "transparent",
   },
   loginButtonContainer: {

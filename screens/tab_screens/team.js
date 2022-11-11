@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
 import Character from "../../components/character";
 
 export default function TeamScreen(props) {
@@ -22,7 +14,7 @@ export default function TeamScreen(props) {
     <View style={styles.container}>
       <View style={styles.title}>
         <Text style={[styles.titletext, { fontFamily: "Nunito_800ExtraBold" }]}>
-          About YAIverse
+          ABOUT YAIVERSE
         </Text>
       </View>
       <View>
@@ -43,6 +35,18 @@ export default function TeamScreen(props) {
             <Text style={styles.teamoneName}>김민수</Text>
             <Text style={styles.teamoneRole}>AI LEADER</Text>
             <Text style={styles.teamoneTh}>YAI 7th</Text>
+          </View>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              width: windowWidth / 2,
+            }}
+          >
+            <Character character_image={ImageSet["sangmin"]} />
+            <Text style={styles.teamoneName}>이상민</Text>
+            <Text style={styles.teamoneRole}>TEAM LEADER</Text>
+            <Text style={styles.teamoneTh}>YAI 9th</Text>
           </View>
         </View>
       </ScrollView>
@@ -82,13 +86,15 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     marginBottom: 2,
+    fontFamily: "Jua_400Regular",
   },
   teamoneRole: {
     color: "white",
     textAlign: "center",
     fontSize: 12,
-    fontWeight: "500",
+    fontWeight: "400",
     marginBottom: 2,
+    fontFamily: "Nunito_800ExtraBold",
   },
   teamoneTh: {
     color: "white",

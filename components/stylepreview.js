@@ -9,10 +9,14 @@ function StylePreview(props) {
   const BannerSet = {
     JOJO: { src: require("../assets/jojo/refer.png") },
     DISNEY: { src: require("../assets/disney/refer.jpg") },
-    JINX: { src: require("../assets/jinx/refer.png") },
+    ARCANE: { src: require("../assets/arcane/refer.png") },
     ART: { src: require("../assets/art/refer.png") },
     SKETCH: { src: require("../assets/sketch/refer.png") },
-    CAITLYN: { src: require("../assets/caitlyn/refer.png") },
+    프리드로우: { src: require("../assets/freedraw/refer.jpg") },
+    여신강림: { src: require("../assets/truebeauty/refer.jpg") },
+    침착맨: { src: require("../assets/calmdown/refer.jpg") },
+    이태원클라쓰: { src: require("../assets/itaewonclass/refer.png") },
+    외모지상주의: { src: require("../assets/lookism/refer.png") },
   };
   return (
     <View style={{ width: width, margin: 12 }}>

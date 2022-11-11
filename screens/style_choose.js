@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   View,
   StyleSheet,
@@ -66,15 +66,38 @@ export default function StyleChooseScreen(props) {
               navigation={props.navigation}
               imageUri={imageUri}
             />
-
             <StylePreview
-              name="JINX"
+              name="ARCANE"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}
             />
             <StylePreview
-              name="CAITLYN"
+              name="침착맨"
+              width={windowWidth}
+              navigation={props.navigation}
+              imageUri={imageUri}
+            />
+            <StylePreview
+              name="외모지상주의"
+              width={windowWidth}
+              navigation={props.navigation}
+              imageUri={imageUri}
+            />
+            <StylePreview
+              name="여신강림"
+              width={windowWidth}
+              navigation={props.navigation}
+              imageUri={imageUri}
+            />
+            <StylePreview
+              name="이태원클라쓰"
+              width={windowWidth}
+              navigation={props.navigation}
+              imageUri={imageUri}
+            />
+            <StylePreview
+              name="프리드로우"
               width={windowWidth}
               navigation={props.navigation}
               imageUri={imageUri}

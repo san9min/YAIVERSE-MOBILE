@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import axios from "axios";
-import { Fontisto, Entypo, Foundation, Octicons } from "@expo/vector-icons";
+import { Foundation, Octicons, AntDesign } from "@expo/vector-icons";
 import { API_URL } from "../config/constant";
 import { LinearGradient } from "expo-linear-gradient";
 import * as FileSystem from "expo-file-system";
@@ -34,25 +34,22 @@ export default function ResultScreen(props) {
   const windowWidth = Dimensions.get("window").width;
   const fileUri = FileSystem.documentDirectory + "myFile.png";
   const getPermissions = async () => {
-    if (!ok) {
-      const { status, canAskAgain } = await MediaLibrary.getPermissionsAsync();
-
-      if (status === "undetermined" && canAskAgain) {
-        const { status } = await MediaLibrary.requestPermissionsAsync();
-        if (status !== "undetermined") {
-          setOk(true);
-        }
-      } else if (status !== "undetermined") {
+    const { status, canAskAgain } = await MediaLibrary.getPermissionsAsync();
+    if (status === "denied" && canAskAgain) {
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+    }
+    if (status === "undetermined" && canAskAgain) {
+      const { status } = await MediaLibrary.requestPermissionsAsync();
+      if (status !== "undetermined") {
         setOk(true);
       }
+    } else if (status !== "undetermined") {
+      setOk(true);
     }
   };
 
   useEffect(() => {
-    let startTime = new Date().getTime();
-    console.log(startTime);
     setresultImage(null);
-
     const formData = new FormData();
     formData.append("style", style);
     formData.append("id", id);
@@ -61,6 +58,7 @@ export default function ResultScreen(props) {
       type: "image/png",
       name: "originalImage.png",
     });
+
     axios
       .post(`${API_URL}/file/`, formData, {
         headers: {
@@ -69,9 +67,6 @@ export default function ResultScreen(props) {
       })
       .then((result) => {
         setresultImage(result.data);
-        let endTime = new Date().getTime();
-        console.log(endTime);
-        console.log("걸린 시간 : ", endTime - startTime);
       })
       .catch((err) => {
         console.error(err);
@@ -119,7 +114,9 @@ export default function ResultScreen(props) {
                 }}
               >
                 <Image
-                  source={{ uri: `${API_URL}/file/${resultImage}/` }}
+                  source={{
+                    uri: `${API_URL}/image/${resultImage}`,
+                  }}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -138,10 +135,10 @@ export default function ResultScreen(props) {
                 <View style={styles.smallbutton}>
                   <TouchableOpacity
                     onPress={() => {
-                      setRequest(request + 1);
+                      setRequest(!request);
                     }}
                   >
-                    <Fontisto name="redo" size={24} color="#A154F2" />
+                    <AntDesign name="sync" size={24} color="#A154F2" />
                   </TouchableOpacity>
                 </View>
                 <LinearGradient
@@ -154,7 +151,7 @@ export default function ResultScreen(props) {
                     onPress={async () => {
                       getPermissions();
                       const downloadedFile = await FileSystem.downloadAsync(
-                        `${API_URL}/file/${resultImage}/`,
+                        `${API_URL}/image/${resultImage}`,
                         fileUri
                       );
                       const asset = await MediaLibrary.createAssetAsync(
@@ -188,7 +185,7 @@ export default function ResultScreen(props) {
                     <View style={styles.centeredView}>
                       <View style={styles.modalView}>
                         <Text style={styles.modalText}>
-                          저장이 완료되었습니다
+                          저장이 완료되었습니다.
                         </Text>
                         <Pressable
                           style={[styles.button, styles.buttonClose]}
@@ -247,6 +244,7 @@ const styles = StyleSheet.create({
     color: "#A154F2",
     fontSize: 24,
     fontWeight: "bold",
+    textAlign: "center",
   },
   smallbutton: {
     width: 60,
@@ -281,5 +279,9 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 8,
     textAlign: "center",
+  },
+  textStyle: {
+    marginTop: 24,
+    fontWeight: "bold",
   },
 });

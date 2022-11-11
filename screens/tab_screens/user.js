@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { API_URL } from "../../config/constant";
@@ -48,7 +40,15 @@ export default function UserScreen(props) {
       </View>
       <View>
         {id != null && (
-          <Text style={{ color: "white", margin: 20 }}>{id}님의 갤러리</Text>
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+              margin: 20,
+              fontSize: 24,
+              fontFamily: "Nunito_800ExtraBold",
+            }}
+          ></Text>
         )}
       </View>
       {imgkey && (

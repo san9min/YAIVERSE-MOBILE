@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { FontAwesome5, AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { LinearGradient } from "expo-linear-gradient";
 

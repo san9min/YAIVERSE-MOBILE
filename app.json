@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "YAIVERSE",
-    "slug": "YAIVERSE",
+    "slug": "YAIVERSE Mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/logo.png",
@@ -36,8 +36,8 @@
       [
         "expo-media-library",
         {
-          "photosPermission": "YAVverse가 회원님의 사진에 접근하도록 허용해주세요.",
-          "savePhotosPermission": "YAVverse가 아바타를 갤러리에 저장하도록 허용해주세요.",
+          "photosPermission": "YAIverse가 회원님의 사진에 접근하도록 허용해주세요.",
+          "savePhotosPermission": "YAIverse가 아바타를 갤러리에 저장하도록 허용해주세요.",
           "isAccessMediaLocationEnabled": true
         }
       ]

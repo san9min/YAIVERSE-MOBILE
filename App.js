@@ -1,5 +1,4 @@
 import "react-native-gesture-handler";
-import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useEffect } from "react";
@@ -20,6 +19,7 @@ import {
   Nunito_600SemiBold,
   Nunito_700Bold,
 } from "@expo-google-fonts/nunito";
+import { Jua_400Regular } from "@expo-google-fonts/jua";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 const Stack = createStackNavigator();
@@ -38,6 +38,7 @@ export default function App() {
           { Nunito_400Regular: Nunito_400Regular },
           { Nunito_600SemiBold: Nunito_600SemiBold },
           { Nunito_700Bold_Italic: Nunito_700Bold },
+          { Jua_400Regular: Jua_400Regular },
         ]);
         await Promise.all([...fontAssets]);
       } catch (e) {

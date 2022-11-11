@@ -7,12 +7,12 @@ import {
   Button,
   Dimensions,
   Image,
-  Alert,
 } from "react-native";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { Camera, CameraType } from "expo-camera";
 import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function CameraScreen(props) {
   //카메라
@@ -28,9 +28,13 @@ export default function CameraScreen(props) {
   const onCameraReady = () => {
     setIsCameraReady(true);
   };
+
   const onSnap = async () => {
     if (cameraRef.current) {
-      const options = { quality: 1.0, base64: true };
+      const options = {
+        quality: 1.0,
+        base64: true,
+      };
       const data = await cameraRef.current.takePictureAsync(options);
       const source = data.uri;
       console.log(source);
@@ -49,10 +53,15 @@ export default function CameraScreen(props) {
   if (!permission.granted) {
     // Camera permissions are not granted yet
     return (
-      <View style={styles.container}>
-        <Text
-          style={{ textAlign: "center", color: "white", margin: 10, flex: 1 }}
-        >
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "rgb(24,24,24)",
+        }}
+      >
+        <Text style={{ textAlign: "center", color: "white", margin: 10 }}>
           YAIverse가 카메라에 액세스하도록 허용
         </Text>
         <Button onPress={requestPermission} title="액세스 허용" />
@@ -117,12 +126,25 @@ export default function CameraScreen(props) {
           </View>
           <View style={styles.continueButtonContainer}>
             <TouchableOpacity
-              style={styles.continueButton}
               onPress={() => {
                 props.navigation.navigate("StyleChoose", { image: image });
               }}
             >
-              <Text style={styles.continueButtontext}>Continue</Text>
+              <LinearGradient
+                colors={["#546DF2", "#A154F2"]}
+                style={styles.continueButton}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+              >
+                <Text
+                  style={[
+                    styles.continueButtontext,
+                    { fontFamily: "Nunito_800ExtraBold" },
+                  ]}
+                >
+                  Continue
+                </Text>
+              </LinearGradient>
             </TouchableOpacity>
           </View>
         </View>
@@ -182,7 +204,7 @@ const styles = StyleSheet.create({
   },
   preview: { flex: 13 },
   imageContainer: {
-    flex: 6,
+    flex: 8,
     backgroundColor: "rgb(18,18,18)",
     justifyContent: "center",
     alignItems: "center",
@@ -212,7 +234,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 20,
   },
-
   continueButtontext: {
     fontSize: 18,
     fontWeight: "bold",
