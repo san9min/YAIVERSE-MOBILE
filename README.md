@@ -1,6 +1,6 @@
 # YAIVERSE-mobile
 
-![12](https://user-images.githubusercontent.com/92682815/208837191-dccab919-d124-4988-93c6-b66f876a4c60.PNG)
+![add zoomin](https://user-images.githubusercontent.com/92682815/208839743-dd414955-bcd4-40ec-b62e-58353afb0a06.PNG)
 
 ---
 ## 1.Requirement
