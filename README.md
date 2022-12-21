@@ -1,6 +1,7 @@
 # YAIVERSE-mobile
 YONCon-1th
 
+![12](https://user-images.githubusercontent.com/92682815/208837191-dccab919-d124-4988-93c6-b66f876a4c60.PNG)
 
 ---
 ## 1.Requirement
