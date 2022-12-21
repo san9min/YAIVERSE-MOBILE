@@ -1,5 +1,4 @@
 # YAIVERSE-mobile
-YONCon-1th
 
 ![12](https://user-images.githubusercontent.com/92682815/208837191-dccab919-d124-4988-93c6-b66f876a4c60.PNG)
 
@@ -31,7 +30,7 @@ You can find the dependencies on package.json file.
   cd YAIVERSE/app/YAIVERSE-mobile
 ```
 
-### Download requried module and Open in Expo
+### Download requried modules and Open in Expo
 
 Node packages module help you to install the required packages with below code
 
@@ -40,5 +39,6 @@ Node packages module help you to install the required packages with below code
   npm start
 ```
 
-**Your device must connect the same network with your local computer** 
+**Your device must connect the same network with your local computer**   
+
 But API url in constant.js file is not available now. 
