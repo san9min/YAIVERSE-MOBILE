@@ -11,6 +11,7 @@ Using React native with Expo framework, we have done it in 2 weeks.
 
 We hope that this work will be used as a standard in future competitions.
 
+Template Codes are available in template folder.
 
 ---
 ## 1. Requirement
