@@ -34,8 +34,8 @@ You can find the dependencies on package.json file.
 ### Clone repos ###
 
 ```
-  git clone https://github.com/minsu1206/YAIVERSE.git
-  cd YAIVERSE/app/YAIVERSE-mobile
+  git clone https://github.com/san9min/YAIVERSE-mobile.git
+  cd YAIVERSE-mobile
 ```
 
 ### Download requried modules and Open in Expo
