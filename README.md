@@ -1,7 +1,6 @@
 # YAIVERSE-mobile
 
-
-![YAIVERSE Final App (1)](https://user-images.githubusercontent.com/92682815/209375419-7d9a3929-12dd-43b5-9801-dd86e94b7ec0.png)
+![YAIVERSE Final App](https://user-images.githubusercontent.com/92682815/209924847-4f58818a-9436-40cb-a97c-daa1f887ab0a.png)
 
 ---
 ## 0. Introduction
