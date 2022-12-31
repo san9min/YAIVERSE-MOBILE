@@ -16,7 +16,7 @@ Template Codes are available in template folder.
 ---
 ## 1. Requirement
 
-You need to download expo in your device.   
+You need to download expo on your device.   
 
 If your device is Android, download Expo at Google play or IOS, then Expo Go at Play Store  
 
@@ -24,7 +24,7 @@ If your device is Android, download Expo at Google play or IOS, then Expo Go at 
 
 
 
-You can find the dependencies on package.json file.
+You can find the dependencies in package.json file.
 
 ---
 
